@@ -13,7 +13,17 @@ $(document).ready(function()
   $(this).css('background', '#D8F9D3');
   e.preventDefault();
   var image = e.originalEvent.dataTransfer.files;
-  createFormData(image);
+//  createFormData(image);
+  
+  var reader = new FileReader();
+
+  reader.onload = function (e) {
+    // get loaded data and render thumbnail.
+    $("image").src = e.target.result;
+  };
+
+  // read the image file as a data URL.
+  reader.readAsDataURL(image[0]);
  });
 });
 
